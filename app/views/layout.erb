@@ -28,7 +28,10 @@
     </div>
      <script type="text/template" class="template">
           <h1><%%=res.title%></h1>
+          <%% for(var i = 0; i < (_.size(res) - 1); i++){ %>
 
-       </script>
+          <<%%-res[i].tag%>><%%=res[i].content%></<%%-res[i].tag%>> 
+          <%% }%> 
+    </script>
 </body>
 </html>

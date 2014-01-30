@@ -14,7 +14,7 @@ var renderArticle = function(id) {
         data: {id:id},
         success: function(res) {
 
-        	console.log(jQuery.parseJSON(res))
+        	response = jQuery.parseJSON(res)
         	  _.templateSettings.variable = "res";
             var template = _.template(
 
