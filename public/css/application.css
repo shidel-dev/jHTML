@@ -65,3 +65,22 @@
     cursor: pointer
 }
 
+#holder{
+    position: relative;
+    width: 357px;
+    margin-left: -172.5px;
+    left: 50%;
+}
+
+#type{
+    margin-left: 86px;
+}
+
+#submit{margin-left: 104px;}
+
+textarea{
+    overflow: auto;
+    vertical-align: top;
+    margin-left: -76px;
+}
+
