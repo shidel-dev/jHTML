@@ -8,8 +8,15 @@ get '/new' do
 end
 
 post'/add' do
-	Post.create(title: params["title"], content: params.to_s)
+	puts params.to_json
+	Post.create(title: params["title"], content: params.to_json)
 	content_type :json
-  Post.last.content.to_json
+  Post.last.content
 end
+
+post '/article' do
+	content_type :json
+	Post.find(params['id']).content.to_json
+end
+
 
