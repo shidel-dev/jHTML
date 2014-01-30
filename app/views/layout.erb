@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/application.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+
+  <title></title>
+</head>
+<body>
+    <div class='header' id='header'>
+        <a id='banner' href='/'>
+            SHIDEL
+        </a>
+     
+        <a id="articles" href='/list'>
+            Articles
+        </a>
+    </div>  
+    <div class='container'>
+  <%= yield %>
+    </div>
+</body>
+</html>
