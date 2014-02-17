@@ -76,6 +76,10 @@
     margin-left: 86px;
 }
 
+#title {
+width: 500px;
+}
+
 #submit{margin-left: 104px;}
 
 textarea{
@@ -83,4 +87,3 @@ textarea{
     vertical-align: top;
     margin-left: -76px;
 }
-
