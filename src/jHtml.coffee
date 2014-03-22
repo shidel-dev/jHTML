@@ -1,4 +1,5 @@
 do ($)-> 
   $.extend
-    jHtml: (json)->
-      
+    jHtml:
+      parse: (json)->
+      CONST:{}      
