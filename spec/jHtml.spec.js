@@ -14,6 +14,23 @@ describe("jHtml parse", function(){
 
 		expect($.jHtml.parse(header)).toBe("<div class='holder' ><p id='example' >hello</p></div>")
 	})
+
+	it("generates deeply nested dom", function(){
+		var deepDom =
+		[
+		 "div",
+		 		{"id":"outer"},[
+		 			"div",{"id":"inner"},[],
+		 			"div",{"id":"inner"},[
+		 				"p",{"id":"deep"},[
+		 					"a",{"href":"google.com"},"google"
+		 				]
+		 			]
+		 		]
+		]
+
+		expect($.jHtml.parse(deepDom)).toBe("<div id='outer' ><div id='inner' ></div><div id='inner' ><p id='deep' ><a href='google.com' >google</a></p></div></div>")
+	})
 });
 
 describe("jHtml fetch", function(){
