@@ -2,4 +2,5 @@ do ($)->
   $.extend
     jHtml:
       parse: (json)->
-      CONST:{}      
+      CONST:{}
+      validate:(json)->      

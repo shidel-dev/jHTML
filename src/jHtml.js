@@ -3,7 +3,8 @@
   return $.extend({
     jHtml: {
       parse: function(json) {},
-      CONST: {}
+      CONST: {},
+      validate: function(json) {}
     }
   });
 })($);
