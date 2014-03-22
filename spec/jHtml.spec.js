@@ -28,8 +28,4 @@ describe("jHtml validate", function(){
 	});
 });
 
-describe("jHtml CONST", function(){
-	it("adds constants under jHtml namespace", function(){
-		expect($.jHtml.CONST).toBeDefined();
-	});
-});	
+	
