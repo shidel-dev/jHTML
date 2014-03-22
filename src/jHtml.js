@@ -2,7 +2,6 @@
 (function($) {
   return $.extend({
     jHtml: {
-      CONST: {},
       parse: function(json) {
         var domString, traverse;
         domString = "";
@@ -44,19 +43,3 @@
     }
   });
 })($);
-
-window.header = [
-  "div", {
-    "class": "holder"
-  }, [
-    "p", {
-      "id": "example"
-    }, "hello"
-  ], "div", {
-    "class": "holder"
-  }, [
-    "p", {
-      "id": "example"
-    }, "hello"
-  ]
-];

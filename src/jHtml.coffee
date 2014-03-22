@@ -1,8 +1,6 @@
 do ($)-> 
   $.extend
     jHtml:
-      CONST:{}
-
       parse: (json) ->
         domString = ""
         traverse = (obj) ->
@@ -29,19 +27,8 @@ do ($)->
         traverse(json) 
         domString     
 
-      
       validate: (json) ->  
       fetch: (url) -> 
 
-window.header = [
-  "div",
-    {"class":"holder"},[
-      "p",{"id":"example"},"hello"
-    ],
-  "div",
-    {"class":"holder"},[
-      "p",{"id":"example"},"hello"
-      ]  
- ]
 
     
