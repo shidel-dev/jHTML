@@ -3,7 +3,9 @@ describe("jHtml parse", function(){
 		expect($.jHtml.parse).toBeDefined();
 	});
 })
-decribe("jHtml CONST", function(){
+
+
+describe("jHtml CONST", function(){
 	it("adds constants under jHtml namespace", function(){
 		expect($.jHtml.CONST).toBeDefined();
 	})
