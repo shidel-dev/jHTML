@@ -3,14 +3,16 @@ describe("jHtml parse", function(){
 		expect($.jHtml.parse).toBeDefined();
 	});
 
-	it("generates correct markup for a hello world h1", function(){
-		 var header = {
-				"h1" : {
-					"class" : "greeting",
-					"content" : "Hello World"
-				}
-			};
-		expect($.jHtml.parse(header)).toBe("<h1 class='greeting' >Hello World</h1>")
+	it("generates correct markup for a hello world div", function(){
+		 var header = 
+ [
+  "div",
+    {"class":"holder"},[
+      "p",{"id":"example"},"hello"
+    ]
+ ];
+
+		expect($.jHtml.parse(header)).toBe("<div class='holder' ><p id='example' >hello</p></div>")
 	})
 });
 
