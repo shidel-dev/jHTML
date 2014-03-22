@@ -3,4 +3,5 @@ do ($)->
     jHtml:
       parse: (json)->
       CONST:{}
-      validate:(json)->      
+      validate:(json)->  
+      fetch:(url)->    

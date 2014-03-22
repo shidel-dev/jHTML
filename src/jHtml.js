@@ -4,7 +4,8 @@
     jHtml: {
       parse: function(json) {},
       CONST: {},
-      validate: function(json) {}
+      validate: function(json) {},
+      fetch: function(url) {}
     }
   });
 })($);

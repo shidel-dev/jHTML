@@ -6,7 +6,7 @@ describe("jHtml parse", function(){
 
 describe("jHtml fetch", function(){
 	it("is defined under jHtml namespace", function(){
-		expect($.jhtml.fetch).toBeDefined();
+		expect($.jHtml.fetch).toBeDefined();
 	})
 })
 
