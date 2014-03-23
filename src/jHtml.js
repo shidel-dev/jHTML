@@ -2,9 +2,62 @@
 (function($) {
   return $.extend({
     jHtml: {
-      parse: function(json) {},
-      CONST: {},
-      validate: function(json) {}
+      parse: function(json) {
+        var domString, traverse;
+        domString = "";
+        traverse = function(obj) {
+          var attr, i, val, _ref, _results;
+          i = 0;
+          _results = [];
+          while (i < obj.length) {
+            domString += "<";
+            domString += obj[i];
+            domString += " ";
+            _ref = obj[i + 1];
+            for (attr in _ref) {
+              val = _ref[attr];
+              domString += attr;
+              domString += "=";
+              domString += "'";
+              domString += val;
+              domString += "' ";
+            }
+            domString += ">";
+            if (obj[i + 2] instanceof Array) {
+              traverse(obj[i + 2]);
+            } else {
+              domString += obj[i + 2];
+            }
+            domString += "</";
+            domString += obj[i];
+            domString += ">";
+            _results.push(i += 3);
+          }
+          return _results;
+        };
+        traverse(json);
+        return domString;
+      },
+      validate: function(json) {},
+      fetch: function(url, callback) {
+        var that;
+        that = this;
+        $.ajax({
+          method: "get",
+          url: url,
+          contentType: "application/json",
+          success: function(res) {
+            return callback(that.parse(res));
+          }
+        });
+        return true;
+      },
+      escapeStr: function(val) {
+        if (typeof val !== "string") {
+          return val;
+        }
+        return val.replace(/[\"]/g, '\\"').replace(/[\\]/g, '\\\\').replace(/[\/]/g, '\\/').replace(/[\b]/g, '\\b').replace(/[\f]/g, '\\f').replace(/[\n]/g, '\\n').replace(/[\r]/g, '\\r').replace(/[\t]/g, '\\t');
+      }
     }
   });
 })($);
