@@ -38,19 +38,7 @@ do ($)->
             contentType: "application/json"
             success:(res)->
               callback(that.parse(res))
-        true 
-
-      escapeStr:(val)->
-        if (typeof(val)!="string") then return val
-        return val
-          .replace(/[\"]/g, '\\"')
-          .replace(/[\\]/g, '\\\\')
-          .replace(/[\/]/g, '\\/')
-          .replace(/[\b]/g, '\\b')
-          .replace(/[\f]/g, '\\f')
-          .replace(/[\n]/g, '\\n')
-          .replace(/[\r]/g, '\\r')
-          .replace(/[\t]/g, '\\t')       
+        true       
           
 
 
