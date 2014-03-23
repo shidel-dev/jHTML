@@ -2,7 +2,7 @@
 (function($) {
   return $.extend({
     jHtml: {
-      parse: function(json) {
+      parse: function(json, callback) {
         var domString, traverse;
         domString = "";
         traverse = function(obj) {
@@ -36,13 +36,16 @@
           return _results;
         };
         traverse(json);
+        if (callback) {
+          callback(domString);
+        }
         return domString;
       },
       validate: function(json) {},
       fetch: function(url, callback) {
         var that;
         that = this;
-        $.ajax({
+        return $.ajax({
           method: "get",
           url: url,
           contentType: "application/json",
@@ -50,8 +53,28 @@
             return callback(that.parse(res));
           }
         });
-        return true;
-      }
+      },
+      template: (function(){
+          'use strict';
+          var SPACE_RE = /[\r\t\n]/g,
+              QUOTE_RE = /'/g,
+              ESC_QUOTE_RE = /\\'/g,
+              proc = function(all, g1){
+                  var s = g1.replace(ESC_QUOTE_RE, "'");
+                  return s.charAt(0) === '=' ? ("'+" + s.slice(1) + "+'") : ("';" + s + "s+='");
+              };
+
+          function tmpl(str,varName){
+              varName = varName || "data";
+
+              return new Function(varName, "var s='" +
+                  str.replace(SPACE_RE, " ").replace(QUOTE_RE, "\\'").replace(tmpl.procRe, proc) + "';return s;");
+          }
+
+          tmpl.procRe = /{{(.+?)}}/g;
+
+          return tmpl;
+      }())
     }
   });
 })($);

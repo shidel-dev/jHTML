@@ -59,6 +59,38 @@ describe("jHtml parse", function(){
   expect($("<div></div>").html($.jHtml.parse(options)).find("option").length).toBe(5);
   expect($("<div></div>").html($.jHtml.parse(options)).find("button").attr("id")).toBe("submit")
 	})
+
+  it("triggers callback function if provided", function(){
+   var post = 
+[
+  "h1",{},"Post 1",
+	"p",{},"Often recursive techniques require helper functions to handle some of the recursive logic for the main method. Most of the time these method are given not so great names like 'fooHelper' which make the code less readable, and pollutes the name-space.",
+
+	"p",{},"Anonymous functions are a great way to have unnamed functions, and are a great tool in many cases. However since they are unnamed it may not be so intuitive how to use an anonymous function recursively.",
+
+	"p",{},"Thankfully javaScript makes this quite simple.",
+
+	"p",{},"The arguments object has a property called 'callee' which refers to the currently executing function. This can be used to make recursive calls. Of course you could also use named functions as long as they are not in the global scope, and this would not be a problem.",
+
+	"p",{},"I will show both of these techniques by creating functions to test if two numbers are co-prime (their greatest common divisor is one).",
+	
+	"pre",{},"Number.prototype.isCoprimeTo = function(num) {\r\n \r\n  if (this>num) var small = num, big = this;\r\n  else var small = this, big = num; \r\n \r\n    return (function(a, b) {\r\n        if (b == 0) return a;\r\n        return arguments.callee(b, a % b);\r\n    })(small, big) == 1\r\n}\r\n \r\n \r\n \r\n\/\/======example two=======\r\n \r\nfunction isCoprimeTo(num1, num2){\r\n \r\n  if (num1>num2) var small = num2, big = num1;\r\n  else var small = num1, big = num2;\r\n \r\n  return (function gcd(a,b){\r\n    if (b == 0) return a;\r\n    return gcd(b, a % b);\r\n  })(small,big) == 1\r\n}\r\n \r\n\/\/===tests==\r\nvar myNum = 35;\r\nconsole.log(myNum.isCoprimeTo(64) == true)\r\nconsole.log(isCoprimeTo(64,35) == true)",
+	
+	"p",{},[
+		"a",{"href":"http://shidel.com"},[]
+	],
+
+	"br",{},[],
+	
+	"p",{},"by Joe Shidel"
+]
+  var div = $("<div></div>")
+   $.jHtml.parse(post,function(result){
+   	div.html(result)
+   })
+   expect(div.children().length).toBe(11);
+
+  })
 });
 
 describe("jHtml fetch", function(){
@@ -72,5 +104,21 @@ describe("jHtml validate", function(){
 		expect($.jHtml.validate).toBeDefined();
 	});
 });
+
+describe("jHtml template",function(){
+	it("can make a basic dom string from template data", function(){
+		expect($.jHtml.template("<p>{{=data.name}}</p>")({name:"joe"})).toBe("<p>joe</p>");
+	})
+
+	it("can have named objects",function(){
+		expect($.jHtml.template("<p>{{=user.name}}</p>", "user")({name:"joe"})).toBe("<p>joe</p>");
+	})
+
+	it("can can do javaScript", function(){
+		var templStr = "<div>{{  for(var i = 0; i < 4; i++){ }}<p>{{= i }}</p>{{ } }}</div>"
+
+		expect($.jHtml.template(templStr)()).toBe('<div><p>0</p><p>1</p><p>2</p><p>3</p></div>');								
+	})
+})
 
 	
