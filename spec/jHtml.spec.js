@@ -23,13 +23,13 @@ describe("jHtml parse", function(){
 		 			"div",{"id":"inner"},[],
 		 			"div",{"id":"inner"},[
 		 				"p",{"id":"deep"},[
-		 					"a",{"href":"google.com"},"google"
+		 					"a",{"href":"http://google.com"},"google"
 		 				]
 		 			]
-		 		]
+		 		]	
 		]
 
-		expect($.jHtml.parse(deepDom)).toBe("<div id='outer' ><div id='inner' ></div><div id='inner' ><p id='deep' ><a href='google.com' >google</a></p></div></div>")
+		expect($.jHtml.parse(deepDom)).toBe("<div id='outer' ><div id='inner' ></div><div id='inner' ><p id='deep' ><a href='http://google.com' >google</a></p></div></div>")
 	})
 });
 
