@@ -1,8 +1,10 @@
-describe("jHtml parse", function(){
+describe("jHtml",function(){
 	it("extends dollar namespace", function(){
 		expect($.jHtml.parse).toBeDefined();
 	});
+})
 
+describe("jHtml parse", function(){
 	it("generates correct markup for a hello world div", function(){
 		 var header = 
  [
@@ -114,7 +116,7 @@ describe("jHtml template",function(){
 		expect($.jHtml.template("<p>{{=user.name}}</p>", "user")({name:"joe"})).toBe("<p>joe</p>");
 	})
 
-	it("can can do javaScript", function(){
+	it("can do javaScript", function(){
 		var templStr = "<div>{{  for(var i = 0; i < 4; i++){ }}<p>{{= i }}</p>{{ } }}</div>"
 
 		expect($.jHtml.template(templStr)()).toBe('<div><p>0</p><p>1</p><p>2</p><p>3</p></div>');								
