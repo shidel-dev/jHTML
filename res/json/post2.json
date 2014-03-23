@@ -5,5 +5,17 @@
 		"a",{"href":"http://shidel.com"},[]
 	],
 	"br",{},[],
+	"form",{},[
+			"input" ,{"list":"browsers", "name":"browser"},[],
+			"datalist", {"id":"browsers"},[
+			  "option",{ "value":"Internet Explorer"},[],
+			  "option",{ "value":"Chrome"},[],
+			  "option",{ "value":"Safari"},[],
+			  "option",{ "value":"Firefox"},[],
+			  "option",{ "value":"Opera"},[]
+			],
+			"button",{"id":"submit"},"submit"
+	],
+
 	"p",{},"by Joe Shidel"
 ]
