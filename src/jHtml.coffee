@@ -25,10 +25,33 @@ do ($)->
             domString += ">"
             i += 3 
         traverse(json) 
-        domString     
+        domString   
+
+ 
 
       validate: (json) ->  
-      fetch: (url) -> 
+      fetch: (url,callback) -> 
+        that = this
+        $.ajax
+            method:"get"
+            url:url
+            contentType: "application/json"
+            success:(res)->
+              callback(that.parse(res))
+        true 
+
+      escapeStr:(val)->
+        if (typeof(val)!="string") then return val
+        return val
+          .replace(/[\"]/g, '\\"')
+          .replace(/[\\]/g, '\\\\')
+          .replace(/[\/]/g, '\\/')
+          .replace(/[\b]/g, '\\b')
+          .replace(/[\f]/g, '\\f')
+          .replace(/[\n]/g, '\\n')
+          .replace(/[\r]/g, '\\r')
+          .replace(/[\t]/g, '\\t')       
+          
 
 
     
