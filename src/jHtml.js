@@ -39,7 +39,25 @@
         return domString;
       },
       validate: function(json) {},
-      fetch: function(url) {}
+      fetch: function(url, callback) {
+        var that;
+        that = this;
+        $.ajax({
+          method: "get",
+          url: url,
+          contentType: "application/json",
+          success: function(res) {
+            return callback(that.parse(res));
+          }
+        });
+        return true;
+      },
+      escapeStr: function(val) {
+        if (typeof val !== "string") {
+          return val;
+        }
+        return val.replace(/[\"]/g, '\\"').replace(/[\\]/g, '\\\\').replace(/[\/]/g, '\\/').replace(/[\b]/g, '\\b').replace(/[\f]/g, '\\f').replace(/[\n]/g, '\\n').replace(/[\r]/g, '\\r').replace(/[\t]/g, '\\t');
+      }
     }
   });
 })($);
