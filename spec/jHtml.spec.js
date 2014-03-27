@@ -1,6 +1,6 @@
 describe("jHtml",function(){
 	it("extends dollar namespace", function(){
-		expect($.jHtml.parse).toBeDefined();
+		expect($.jHtml).toBeDefined();
 	});
 })
 
@@ -106,6 +106,15 @@ describe("jHtml validate", function(){
 		expect($.jHtml.validate).toBeDefined();
 	});
 
+	it("passes simple jHtml",function(){
+		var mistake = ["div",{},[]]
+		expect($.jHtml.validate(mistake)).toBe(true);
+	})
+	it("fails simple jHtml",function(){
+		var mistake = ["div",[],{}]
+		expect($.jHtml.validate(mistake)).toBe(false);
+	})
+
 	it("can pass good code", function(){
 	var post = 
 [
@@ -130,15 +139,12 @@ describe("jHtml validate", function(){
 	
 	"p",{},"by Joe Shidel"
 ]
-		expect($.jHtml.validate(post)).not.toThrow()
+		expect($.jHtml.validate(post)).toBe(true);
 	})
 
 
 
-	it("catches a mistake in jHtml",function(){
-		var mistake = ["div",[],{}]
-		expect($.jHtml.validate(mistake)).toThrow();
-	})
+
 
   it("catches nested mistakes", function(){
 		var options = 
@@ -164,7 +170,7 @@ describe("jHtml validate", function(){
 	"p",{},"by Joe Shidel"
 ]
 
-expect($.jHtml.validate(options)).toThrow();  	
+    expect($.jHtml.validate(options)).toBe(false);  	
   })
 });
 
